@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menú Fijo con Submenús</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Menú lateral -->
+ <div class="menu">
+    <h2>Menú</h2>
+    <ul>
+      <li class="con-submenu">
+        <a href="#" onclick="toggleSubmenu(event, 'submenu0')">Usuarios</a>
+        <ul class="submenu" id="submenu0">
+          <li><a href="#" onclick="mostrarSeccion('subseccion0a')">Perfiles</a></li>
+          <li><a href="#" onclick="mostrarSeccion('subseccion0b')">Trabajadores</a></li>
+          <li><a href="#" onclick="mostrarSeccion('subseccion0c')">Tablas</a></li>
+        </ul>
+      </li>
+      <li class="con-submenu">
+        <a href="#" onclick="toggleSubmenu(event, 'submenu1')">Control</a>
+        <ul class="submenu" id="submenu1">
+          <li><a href="#" onclick="mostrarSeccion('subseccion1a')">Ingresos</a></li>
+          <li><a href="#" onclick="mostrarSeccion('subseccion1b')">Egresos</a></li>
+          <li><a href="#" onclick="mostrarSeccion('subseccion1c')">Nominas</a></li>
+          <li><a href="#" onclick="mostrarSeccion('subseccion1d')">Ganado</a></li>
+        </ul>
+      </li>
+      <li class="con-submenu">
+        <a href="#" onclick="toggleSubmenu(event, 'submenu2')">Informes</a>
+        <ul class="submenu" id="submenu2">
+          <li><a href="#" onclick="mostrarSeccion('subseccion2a')">Reporte mensual</a></li>
+          <li><a href="#" onclick="mostrarSeccion('subseccion2b')">Reporte Acumulado</a></li>
+          <li><a href="#" onclick="mostrarSeccion('subseccion2c')">Reporte Integral</a></li>
+        </ul>
+      </li>
+      <li class="con-submenu">
+        <a href="#" onclick="toggleSubmenu(event, 'submenu3')">Saldos</a>
+        <ul class="submenu" id="submenu3">
+          <li><a href="#" onclick="mostrarSeccion('subseccion3a')">PYME</a></li>
+          <li><a href="#" onclick="mostrarSeccion('subseccion3b')">Libreton</a></li>
+          <li><a href="#" onclick="mostrarSeccion('subseccion3c')">Caja Chica</a></li>
+          <li><a href="#" onclick="mostrarSeccion('subseccion3d')">Caja Grande</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Contenido -->
+  <div class="contenido">
+    <div id="seccion0" class="seccion activa">
+      <h3>Inicio</h3>
+      <p>BIENVENIDO(A)</p>
+    </div>
+    
+  <div id="subseccion0a" class="seccion">
+    <h3>perfiles</h3>
+    <p>Contenido de la opción 2.</p>
+  </div>  
+
+ 
+  <div id="subseccion0c" class="seccion">
+    <h3>Tablas</h3>
+    <p>Contenido de la opción 2.</p>
+  </div>
+
+
+
+
+  <div id="subseccion1a" class="seccion">
+     <div class="container">
+    <div class="top-actions">
+      <h2>Gestión de Ingresos</h2>
+      <button class="btn" onclick="openModal()">Agregar Ingreso</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Importe</th>
+          <th>Cuenta</th>
+          <th>Concepto</th>
+          <th>Origen</th>
+          <th>Forma de Pago</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaIngresos">
+        <!-- Registros se agregarán aquí -->
+      </tbody>
+    </table>
+  </div>
+  <!-- Modal -->
+  <div class="modal" id="modalIngreso">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Agregar Ingreso</h3>
+        <span class="close" onclick="closeModal()">&times;</span>
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha">
+      </div>
+      <div class="form-group">
+        <label for="importe">Importe:</label>
+        <input type="number" id="importe" step="0.01">
+      </div>
+      <div class="form-group">
+  <label for="cuenta">Cuenta:</label>
+  <select id="cuenta">
+    <option value="">Seleccionar cuenta</option>
+    <option value="Pyme">Pyme</option>
+    <option value="Libreton">Libreton</option>
+    <option value="Caja chica">Caja chica</option>
+    <option value="Caja grande">Caja grande</option>
+  </select>
+</div>
+     <div class="form-group">
+        <label for="concepto">Concepto:</label>
+        <input type="text" id="concepto">
+      </div>
+      <div class="form-group">
+        <label for="origen">Origen:</label>
+        <select id="origen">
+          <option value="">Seleccionar origen</option>
+          <option value="Cuatunalco">Cuatunalco</option>
+          <option value="Agua Blanca">Agua Blanca</option>
+          <option value="Rancho">Rancho</option>
+          <option value="Villa">Villa</option>
+          <option value="Casa Pochutla">Casa Pochutla</option>
+        </select>
+      </div>
+<div class="form-group">
+  <label for="formaPago">Forma de pago:</label>
+  <select id="formaPago">
+    <option value="">Seleccionar forma de pago</option>
+    <option value="Efectivo">Efectivo</option>
+    <option value="Transferencia">Transferencia</option>
+    <option value="Tarjeta de débito">Tarjeta de débito</option>
+    <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+  </select>
+</div>
+      <div class="modal-footer"><br>
+        <button class="btn" onclick="guardarIngreso()">Guardar</button>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+<div id="subseccion1b" class="seccion">
+  <div class="container">
+    <div class="top-actions">
+      <h2>Gestión de Egresos</h2>
+      <button class="btn" onclick="openModalEgreso()">Agregar Egreso</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Importe</th>
+          <th>Cuenta</th>
+          <th>Concepto</th>
+          <th>Origen</th>
+          <th>Forma de Pago</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaEgresos">
+        <!-- Registros se agregarán aquí -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modalEgreso">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Agregar Egreso</h3>
+        <span class="close" onclick="closeModalEgreso()">&times;</span>
+      </div>
+
+      <div class="form-group">
+        <label for="fechaE">Fecha:</label>
+        <input type="date" id="fechaE">
+      </div>
+      <div class="form-group">
+        <label for="importeE">Importe:</label>
+        <input type="number" id="importeE" step="0.01">
+      </div>
+      <div class="form-group">
+        <label for="cuentaE">Cuenta:</label>
+        <select id="cuentaE">
+          <option value="">Seleccionar cuenta</option>
+          <option value="Pyme">Pyme</option>
+          <option value="Libreton">Libreton</option>
+          <option value="Caja chica">Caja chica</option>
+          <option value="Caja grande">Caja grande</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="conceptoE">Concepto:</label>
+        <input type="text" id="conceptoE">
+      </div>
+      <div class="form-group">
+        <label for="destinoE">Destino:</label>
+        <select id="destinoE">
+          <option value="">Seleccionar destino</option>
+          <option value="Cuatunalco">Cuatunalco</option>
+          <option value="Agua Blanca">Agua Blanca</option>
+          <option value="Rancho">Rancho</option>
+          <option value="Villa">Villa</option>
+          <option value="Casa Pochutla">Casa Pochutla</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="formaPagoE">Forma de pago:</label>
+        <select id="formaPagoE">
+          <option value="">Seleccionar forma de pago</option>
+          <option value="Efectivo">Efectivo</option>
+          <option value="Transferencia">Transferencia</option>
+          <option value="Tarjeta de débito">Tarjeta de débito</option>
+          <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+        </select>
+      </div>
+
+      <div class="modal-footer"><br>
+        <button class="btn" onclick="guardarEgreso()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <div id="subseccion1c" class="seccion">
+    <h3>Nominas</h3>
+    <p>Contenido de la subopción 3B.</p>
+  </div>
+  <div id="subseccion1d" class="seccion">
+    <h1>Ganado</h1>
+
+<!-- Ventana flotante para agregar/editar ganado -->
+<!-- Botones para seleccionar tipo de ganado -->
+<div>
+  <button class="btn" onclick="mostrarFormulario('becerro')">Agregar Becerro</button>
+  <button class="btn" onclick="mostrarFormulario('vaca')">Agregar Vaca</button>
+  <button class="btn" onclick="mostrarFormulario('toro')">Agregar Toro</button>
+</div>
+
+<!-- Botones para seleccionar tipo de ganado -->
+<div class="buttons-container">
+  <button class="btn-large" onclick="mostrarTabla('becerro')">Becerros</button>
+  <button class="btn-large" onclick="mostrarTabla('vaca')">Vacas</button>
+  <button class="btn-large" onclick="mostrarTabla('toro')">Toros</button>
+</div>
+
+<!-- Tablas para cada tipo de ganado -->
+<div id="tablaBecerro" class="tabla-container" style="display: none;">
+  <h3>Becerros Registrados</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Raza</th>
+        <th>Fecha Nacimiento</th>
+        <th>Peso</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tablaBecerroBody">
+      <!-- Aquí se agregan los datos de los becerros -->
+    </tbody>
+  </table>
+</div>
+
+<div id="tablaVaca" class="tabla-container" style="display: none;">
+  <h3>Vacas Registradas</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Raza</th>
+        <th>Fecha Nacimiento</th>
+        <th>Peso</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tablaVacaBody">
+      <!-- Aquí se agregan los datos de las vacas -->
+    </tbody>
+  </table>
+</div>
+
+<div id="tablaToro" class="tabla-container" style="display: none;">
+  <h3>Toros Registrados</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Raza</th>
+        <th>Fecha Nacimiento</th>
+        <th>Peso</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tablaToroBody">
+      <!-- Aquí se agregan los datos de los toros -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Ventana flotante para agregar ganado (se adapta según tipo) -->
+<div id="modalGanado" class="modal">
+  <div class="modal-content">
+    <h3 id="tituloFormulario">Formulario de Ganado</h3>
+    <form id="formGanado">
+      <!-- ID (común) -->
+      <label for="id">ID:</label>
+      <input type="number" id="id" readonly />
+
+      <!-- Nombre -->
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required />
+
+      <!-- Raza -->
+      <label for="raza">Raza:</label>
+      <input type="text" id="raza" required />
+
+      <!-- Fecha de Nacimiento -->
+      <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+      <input type="date" id="fechaNacimiento" required />
+
+      <!-- Sexo -->
+      <label for="sexo">Sexo:</label>
+      <select id="sexo" required>
+        <option value="Macho">Macho</option>
+        <option value="Hembra">Hembra</option>
+      </select>
+
+      <!-- Color -->
+      <label for="color">Color:</label>
+      <input type="text" id="color" required />
+
+      <!-- Formularios específicos para cada tipo de ganado -->
+      <div id="becerro" style="display: none;">
+        <label for="fechaDestete">Fecha de Destete:</label>
+        <input type="date" id="fechaDestete" />
+      </div>
+
+      <div id="vaca" style="display: none;">
+        <label for="fechaServicio">Fecha de Servicio:</label>
+        <input type="date" id="fechaServicio" />
+
+        <label for="fechaParto">Fecha de Parto:</label>
+        <input type="date" id="fechaParto" />
+
+        <label for="numeroCrias">Número de Crías:</label>
+        <input type="number" id="numeroCrias" />
+
+        <label for="estadoReproductivo">Estado Reproductivo:</label>
+        <input type="text" id="estadoReproductivo" />
+
+        <label for="historialInseminaciones">Historial de Inseminaciones:</label>
+        <input type="text" id="historialInseminaciones" />
+      </div>
+
+      <div id="toro" style="display: none;">
+        <label for="fechaServicio">Fecha de Servicio:</label>
+        <input type="date" id="fechaServicio" />
+      </div>
+
+      <!-- Campos comunes -->
+      <label for="peso">Peso (kg):</label>
+      <input type="number" id="peso" step="any" min="0" required />
+
+      <label for="temperaturaCorporal">Temperatura Corporal (°C):</label>
+      <input type="number" id="temperaturaCorporal" step="any" min="0" />
+
+      <label for="evaluacionEstadoCorporal">Evaluación del Estado Corporal:</label>
+      <input type="text" id="evaluacionEstadoCorporal" />
+
+      <label for="produccionCarne">Producción de Carne:</label>
+      <input type="number" id="produccionCarne" step="0.01" />
+
+      <label for="rendimientoCrias">Rendimiento de Crías:</label>
+      <input type="number" id="rendimientoCrias" step="0.01" />
+
+      <label for="tipoAlimentacion">Tipo de Alimentación:</label>
+      <input type="text" id="tipoAlimentacion" />
+
+      <label for="cantidadAlimento">Cantidad de Alimento:</label>
+      <input type="number" id="cantidadAlimento" step="0.01" />
+
+      <label for="suplementosAlimenticios">Suplementos Alimenticios:</label>
+      <input type="text" id="suplementosAlimenticios" />
+
+      <label for="comportamientoSocial">Comportamiento Social:</label>
+      <input type="text" id="comportamientoSocial" />
+
+      <label for="manejoPastoreo">Manejo de Pastoreo:</label>
+      <input type="text" id="manejoPastoreo" />
+
+      <label for="adaptacionEntorno">Adaptación al Entorno:</label>
+      <input type="text" id="adaptacionEntorno" />
+
+      <label for="pedigri">Pedigrí:</label>
+      <input type="text" id="pedigri" />
+
+      <label for="indiceCria">Índice de Cría:</label>
+      <input type="number" id="indiceCria" step="0.01" />
+
+      <label for="pruebasGenetica">Pruebas Genéticas:</label>
+      <input type="text" id="pruebasGenetica" />
+
+      <label for="rendimientoCarne2">Rendimiento de Carne (2):</label>
+      <input type="number" id="rendimientoCarne2" step="0.01" />
+
+      <label for="calidadCarne">Calidad de Carne:</label>
+      <input type="text" id="calidadCarne" />
+
+      <label for="indiceConversionAlimenticia">Índice de Conversión Alimenticia:</label>
+      <input type="number" id="indiceConversionAlimenticia" step="0.01" />
+
+      <!-- Botón para guardar -->
+      <button type="button" class="btn" onclick="guardarGanado()">Guardar</button>
+      <button type="button" class="btn close-btn" onclick="cerrarModalGanado()">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+  </div>
+  <div id="subseccion2a" class="seccion">
+    <h3>Reporte Mensual</h3>
+    <p>Contenido de la subopción 5A.</p>
+  </div>
+  <div id="subseccion2b" class="seccion">
+    <h3>Reporte Acumulado</h3>
+    <p>Contenido de la subopción 5B.</p>
+  </div>
+  <div id="subseccion2c" class="seccion">
+    <h3>Reporte Integral</h3>
+    <p>Contenido de la subopción 5B.</p>
+  </div>
+
+
+  <div id="subseccion3a" class="seccion">
+    <div class="cuenta-container" id="cuentaPyme">
+  <h2>Cuenta: Pyme</h2>
+ <button class="btn-toggle" onclick="toggleTabla('ingresosPyme')">Ver Ingresos</button>
+<button class="btn-toggle" onclick="toggleTabla('egresosPyme')">Ver Egresos</button>
+
+
+  <div id="ingresosPyme" class="tabla-cuenta" style="display: none;">
+    <h3>Ingresos - Pyme</h3>
+    <table>
+      <thead>
+        <tr><th>Fecha</th><th>Importe</th><th>Concepto</th><th>Origen</th><th>Forma de Pago</th></tr>
+      </thead>
+      <tbody id="tablaIngresosPyme"></tbody>
+    </table>
+  </div>
+
+  <div id="egresosPyme" class="tabla-cuenta" style="display: none;">
+    <h3>Egresos - Pyme</h3>
+    <table>
+      <thead>
+        <tr><th>Fecha</th><th>Importe</th><th>Concepto</th><th>Destino</th><th>Forma de Pago</th></tr>
+      </thead>
+     <tbody id="tablaEgresosPyme"></tbody>
+    </table>
+  </div>
+</div>
+  </div>
+
+
+
+  <div id="subseccion3b" class="seccion">
+     <div class="cuenta-container" id="cuentaLibreton">
+  <h2>Cuenta: libreton</h2>
+<button class="btn-toggle" onclick="toggleTabla('ingresosLibreton')">Ver Ingresos</button>
+<button class="btn-toggle" onclick="toggleTabla('egresosLibreton')">Ver Egresos</button>
+
+<div id="ingresosLibreton" class="tabla-cuenta" style="display: none;">
+  <h3>Ingresos - Libreton</h3>
+  <table>
+    <thead>
+      <tr><th>Fecha</th><th>Importe</th><th>Concepto</th><th>Origen</th><th>Forma de Pago</th></tr>
+    </thead>
+    <tbody id="tablaIngresosLibreton"></tbody>
+  </table>
+</div>
+
+<div id="egresosLibreton" class="tabla-cuenta" style="display: none;">
+  <h3>Egresos - Libreton</h3>
+  <table>
+    <thead>
+      <tr><th>Fecha</th><th>Importe</th><th>Concepto</th><th>Destino</th><th>Forma de Pago</th></tr>
+    </thead>
+    <tbody id="tablaEgresosLibreton"></tbody>
+  </table>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+  <div id="subseccion3c" class="seccion">
+    <div class="cuenta-container" id="cuentaCajaChica">
+  <h2>Cuenta: Caja Chica</h2>
+  <button class="btn-toggle" onclick="toggleTabla('ingresosCajaChica')">Ver Ingresos</button>
+  <button class="btn-toggle" onclick="toggleTabla('egresosCajaChica')">Ver Egresos</button>
+
+  <div id="ingresosCajaChica" class="tabla-cuenta" style="display: none;">
+    <h3>Ingresos - Caja Chica</h3>
+    <table>
+      <thead>
+        <tr><th>Fecha</th><th>Importe</th><th>Concepto</th><th>Origen</th><th>Forma de Pago</th></tr>
+      </thead>
+      <tbody id="tablaIngresosCajaChica"></tbody>
+    </table>
+  </div>
+
+  <div id="egresosCajaChica" class="tabla-cuenta" style="display: none;">
+    <h3>Egresos - Caja Chica</h3>
+    <table>
+      <thead>
+        <tr><th>Fecha</th><th>Importe</th><th>Concepto</th><th>Destino</th><th>Forma de Pago</th></tr>
+      </thead>
+      <tbody id="tablaEgresosCajaChica"></tbody>
+    </table>
+  </div>
+</div>
+
+  </div>
+
+
+
+
+
+  <div id="subseccion3d" class="seccion">
+    <div class="cuenta-container" id="cuentaCajaGrande">
+  <h2>Cuenta: Caja Grande</h2>
+  <button class="btn-toggle" onclick="toggleTabla('ingresosCajaGrande')">Ver Ingresos</button>
+  <button class="btn-toggle" onclick="toggleTabla('egresosCajaGrande')">Ver Egresos</button>
+
+  <div id="ingresosCajaGrande" class="tabla-cuenta" style="display: none;">
+    <h3>Ingresos - Caja Grande</h3>
+    <table>
+      <thead>
+        <tr><th>Fecha</th><th>Importe</th><th>Concepto</th><th>Origen</th><th>Forma de Pago</th></tr>
+      </thead>
+      <tbody id="tablaIngresosCajaGrande"></tbody>
+    </table>
+  </div>
+
+  <div id="egresosCajaGrande" class="tabla-cuenta" style="display: none;">
+    <h3>Egresos - Caja Grande</h3>
+    <table>
+      <thead>
+        <tr><th>Fecha</th><th>Importe</th><th>Concepto</th><th>Destino</th><th>Forma de Pago</th></tr>
+      </thead>
+      <tbody id="tablaEgresosCajaGrande"></tbody>
+    </table>
+  </div>
+</div>
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+<div id="subseccion0b" class="seccion">
+      <h2>Gestión de Usuarios</h2>
+      <button class="btn" onclick="mostrarModal()">Agregar Nuevo Usuario</button>
+      <table id="tablaUsuarios">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Contraseña</th>
+          <th>Cargo</th>
+          <th>Acciones</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+
+        <!-- Se llena dinámicamente -->
+      </tbody>
+    </table>
+  </div>
+<!-- Ventana flotante para agregar/editar usuario -->
+ <div id="modal" class="modal">
+    <div class="modal-content">
+    <h3>Nuevo Usuario</h3>
+    <form id="formUsuario">
+      <label>ID:</label>
+      <input type="number" id="id" readonly />
+
+      <label>Nombre(s):</label>
+      <input type="text" id="nombre" required />
+
+      <label>Apellido Paterno:</label>
+      <input type="text" id="apellidoPaterno" required />
+
+      <label>Apellido Materno:</label>
+      <input type="text" id="apellidoMaterno" required />
+
+      <label>Contraseña:</label>
+      <input type="password" id="contrasena" required />
+
+      <label>CURP:</label>
+      <input type="text" id="curp" required />
+
+      <label>RFC:</label>
+      <input type="text" id="rfc" required />
+
+      <label>Calle:</label>
+      <input type="text" id="calle" required />
+
+      <label>Colonia:</label>
+      <input type="text" id="colonia" required />
+
+      <label>No. Ext.:</label>
+      <input type="text" id="noExt" required />
+
+      <label>No. Int.:</label>
+      <input type="text" id="noInt" />
+
+      <label>Código Postal:</label>
+      <input type="text" id="codigoPostal" required />
+
+      <label>Localidad:</label>
+      <input type="text" id="localidad" required />
+
+      <label>Municipio:</label>
+      <input type="text" id="municipio" required />
+
+      <label>Estado:</label>
+      <input type="text" id="estado" required />
+
+      <label>E-mail:</label>
+      <input type="email" id="email" required />
+
+      <label>Grupo (año desde el que trabaja):</label>
+      <input type="number" id="grupo" required />
+
+      <label>Sucursal:</label>
+      <input type="text" id="sucursal" required />
+
+      <label>Salario Diario Cuotas y Aportaciones:</label>
+      <input type="number" id="salario" required />
+
+      <label>Tipo de Contrato:</label>
+      <input type="text" id="tipoContrato" required />
+
+      <label>Régimen de Contratación:</label>
+      <input type="text" id="regimen" required />
+
+      <label>Tipo de Jornada:</label>
+      <input type="text" id="tipoJornada" required />
+
+      <label>Banco:</label>
+      <input type="text" id="banco" required />
+
+      <label>CLABE:</label>
+      <input type="text" id="clabe" required />
+
+      <label>Periodicidad de Pago:</label>
+      <input type="text" id="periodicidadPago" required />
+
+      <label>Departamento:</label>
+      <input type="text" id="departamento" required />
+
+      <label>Puesto:</label>
+      <input type="text" id="puesto" required />
+
+      <!-- Botón para guardar -->
+      <button type="button" class="btn" onclick="guardarUsuario()">Guardar</button>
+      <button type="button" class="btn close-btn" onclick="cerrarModal()">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+
+</div>
+
+<script>
+  function mostrarSeccion(id) {
+  // Oculta todas las secciones
+  document.querySelectorAll('.seccion').forEach(seccion =>
+    seccion.classList.remove('activa')
+  );
+
+  // Muestra la sección seleccionada
+  document.getElementById(id).classList.add('activa');
+
+  // Quita la clase 'activo' de todas las opciones del menú
+  document.querySelectorAll('.menu ul li a').forEach(link =>
+    link.classList.remove('activo')
+  );
+
+  // Añade la clase 'activo' a la opción seleccionada
+  event.target.classList.add('activo');
+}
+
+function toggleSubmenu(event, submenuId) {
+  event.preventDefault();
+
+  const submenu = document.getElementById(submenuId);
+  const parent = submenu.parentElement;
+
+  // Abre o cierra solo el submenú seleccionado
+  parent.classList.toggle('open');
+}
+
+
+
+
+let usuarios = [];
+let usuarioEditando = null;
+let ultimoId = 0;
+
+function mostrarModal() {
+  document.getElementById('modal').style.display = 'flex';
+  
+  // Generar ID automático solo si es un nuevo registro
+  if (usuarioEditando === null) {
+    ultimoId++;
+    document.getElementById('id').value = ultimoId;
+  }
+}
+
+function cerrarModal() {
+  document.getElementById('modal').style.display = 'none';
+  document.getElementById('formUsuario').reset();
+  usuarioEditando = null;
+}
+
+function guardarUsuario() {
+  const nuevoUsuario = {
+  id: document.getElementById('id').value,
+  nombre: document.getElementById('nombre').value,
+  contrasena: document.getElementById('contrasena').value, // Capturar contraseña
+  apellidoPaterno: document.getElementById('apellidoPaterno').value,
+  apellidoMaterno: document.getElementById('apellidoMaterno').value,
+  curp: document.getElementById('curp').value,
+  rfc: document.getElementById('rfc').value,
+  calle: document.getElementById('calle').value,
+  colonia: document.getElementById('colonia').value,
+  noExt: document.getElementById('noExt').value,
+  noInt: document.getElementById('noInt').value,
+  codigoPostal: document.getElementById('codigoPostal').value,
+  localidad: document.getElementById('localidad').value,
+  municipio: document.getElementById('municipio').value,
+  estado: document.getElementById('estado').value,
+  email: document.getElementById('email').value,
+  grupo: document.getElementById('grupo').value,
+  sucursal: document.getElementById('sucursal').value,
+  salario: document.getElementById('salario').value,
+  tipoContrato: document.getElementById('tipoContrato').value,
+  regimen: document.getElementById('regimen').value,
+  tipoJornada: document.getElementById('tipoJornada').value,
+  banco: document.getElementById('banco').value,
+  clabe: document.getElementById('clabe').value,
+  periodicidadPago: document.getElementById('periodicidadPago').value,
+  departamento: document.getElementById('departamento').value,
+  puesto: document.getElementById('puesto').value
+};
+
+
+  if (usuarioEditando !== null) {
+    usuarios[usuarioEditando] = nuevoUsuario;
+  } else {
+    usuarios.push(nuevoUsuario);
+  }
+
+  cerrarModal();
+  mostrarUsuarios();
+}
+
+function mostrarUsuarios() {
+  const tabla = document.querySelector('#tablaUsuarios tbody');
+  tabla.innerHTML = '';
+
+  usuarios.forEach((usuario, index) => {
+    const fila = tabla.insertRow();
+
+    fila.insertCell(0).innerText = usuario.id;
+    fila.insertCell(1).innerText = usuario.nombre;
+    fila.insertCell(2).innerText = usuario.contrasena; // Ocultar contraseña
+    fila.insertCell(3).innerText = usuario.puesto;
+
+    const acciones = fila.insertCell(4);
+    acciones.innerHTML = `
+      <button onclick="editarUsuario(${index})">
+      <img src="https://img.icons8.com/ios/50/000000/edit.png" alt="Editar" />
+      </button>
+      <button onclick="eliminarUsuario(${index})">
+      <img src="https://img.icons8.com/ios/50/000000/trash.png" alt="Eliminar" />
+      </button>
+
+  
+    `;
+  });
+}
+function editarUsuario(index) {
+  usuarioEditando = index;
+  const usuario = usuarios[index];
+
+  Object.keys(usuario).forEach(key => {
+    if (document.getElementById(key)) {
+      document.getElementById(key).value = usuario[key];
+    }
+  });
+  mostrarModal();
+}
+function eliminarUsuario(index) {
+  usuarios.splice(index, 1);
+  mostrarUsuarios();
+}
+
+
+
+
+
+
+
+ 
+
+
+  //---------------------------------------------------------//
+let becerros = [];
+let vacas = [];
+let toros = [];
+
+function mostrarFormulario(tipoGanado) {
+  document.getElementById('modalGanado').style.display = 'flex';
+  document.getElementById('becerro').style.display = 'none';
+  document.getElementById('vaca').style.display = 'none';
+  document.getElementById('toro').style.display = 'none';
+
+  document.getElementById(`${tipoGanado}`).style.display = 'block';
+  document.getElementById('tituloFormulario').innerText = `Formulario de ${tipoGanado.charAt(0).toUpperCase() + tipoGanado.slice(1)}`;
+  document.getElementById('tipoGanado').value = tipoGanado;
+}
+
+function cerrarModalGanado() {
+  document.getElementById('modalGanado').style.display = 'none';
+  document.getElementById('formGanado').reset();
+}
+
+function guardarGanado() {
+  const tipoGanado = document.getElementById('tipoGanado').value;
+
+  const nuevoGanado = {
+    id: Math.floor(Math.random() * 10000),
+    nombre: document.getElementById('nombre').value,
+    raza: document.getElementById('raza').value,
+    fechaNacimiento: document.getElementById('fechaNacimiento').value,
+    sexo: document.getElementById('sexo').value,
+    color: document.getElementById('color').value,
+    peso: parseFloat(document.getElementById('peso').value),
+    temperaturaCorporal: document.getElementById('temperaturaCorporal').value,
+    evaluacionEstadoCorporal: document.getElementById('evaluacionEstadoCorporal').value,
+    produccionCarne: document.getElementById('produccionCarne').value,
+    rendimientoCrias: document.getElementById('rendimientoCrias').value,
+    tipoAlimentacion: document.getElementById('tipoAlimentacion').value,
+    cantidadAlimento: document.getElementById('cantidadAlimento').value,
+    suplementosAlimenticios: document.getElementById('suplementosAlimenticios').value,
+    comportamientoSocial: document.getElementById('comportamientoSocial').value,
+    manejoPastoreo: document.getElementById('manejoPastoreo').value,
+    adaptacionEntorno: document.getElementById('adaptacionEntorno').value,
+    pedigree: document.getElementById('pedigri').value,
+    indiceCria: document.getElementById('indiceCria').value,
+    pruebasGenetica: document.getElementById('pruebasGenetica').value,
+    rendimientoCarne2: document.getElementById('rendimientoCarne2').value,
+    calidadCarne: document.getElementById('calidadCarne').value,
+    indiceConversionAlimenticia: document.getElementById('indiceConversionAlimenticia').value
+  };
+
+  if (tipoGanado === 'becerro') becerros.push(nuevoGanado);
+  else if (tipoGanado === 'vaca') vacas.push(nuevoGanado);
+  else if (tipoGanado === 'toro') toros.push(nuevoGanado);
+
+  cerrarModalGanado();
+  mostrarTabla(tipoGanado);
+}
+
+function mostrarTabla(tipoGanado) {
+  document.getElementById('tablaBecerro').style.display = 'none';
+  document.getElementById('tablaVaca').style.display = 'none';
+  document.getElementById('tablaToro').style.display = 'none';
+
+  if (tipoGanado === 'becerro') {
+    document.getElementById('tablaBecerro').style.display = 'block';
+  } else if (tipoGanado === 'vaca') {
+    document.getElementById('tablaVaca').style.display = 'block';
+  } else if (tipoGanado === 'toro') {
+    document.getElementById('tablaToro').style.display = 'block';
+  }
+
+  llenarTabla(tipoGanado);
+}
+
+function llenarTabla(tipoGanado) {
+  let animales = (tipoGanado === 'becerro') ? becerros :
+                 (tipoGanado === 'vaca') ? vacas : toros;
+
+  const tbodyId = `tabla${tipoGanado.charAt(0).toUpperCase() + tipoGanado.slice(1)}Body`;
+  const tbody = document.getElementById(tbodyId);
+  tbody.innerHTML = '';
+
+  animales.forEach(animal => {
+    const row = `
+      <tr>
+        <td>${animal.id}</td>
+        <td>${animal.nombre}</td>
+        <td>${animal.raza}</td>
+        <td>${animal.fechaNacimiento}</td>
+        <td>${animal.peso}</td>
+        <td>
+              <button onclick="editarUsuario(${index})">
+      <img src="https://img.icons8.com/ios/50/000000/edit.png" alt="Editar" />
+      </button>
+      <button onclick="eliminarUsuario(${index})">
+      <img src="https://img.icons8.com/ios/50/000000/trash.png" alt="Eliminar" />
+      </button>
+        </td>
+      </tr>
+    `;
+    tbody.innerHTML += row;
+  });
+}
+
+function editarAnimal(id, tipoGanado) {
+  alert(`Editar animal ID: ${id} (${tipoGanado})`);
+}
+//_______________________________________________________________________________________________________________
+let ingresos = [];
+let egresos = [];
+
+function openModal(modo = "agregar", index = null) {
+  document.getElementById("modalIngreso").style.display = "flex";
+  document.getElementById("modalIngreso").dataset.modo = modo;
+  document.getElementById("modalIngreso").dataset.index = index;
+
+  if (modo === "editar" && index !== null) {
+    const ingreso = ingresos[index];
+    document.getElementById("fecha").value = ingreso.fecha;
+    document.getElementById("importe").value = ingreso.importe;
+    document.getElementById("cuenta").value = ingreso.cuenta;
+    document.getElementById("concepto").value = ingreso.concepto;
+    document.getElementById("origen").value = ingreso.origen;
+    document.getElementById("formaPago").value = ingreso.formaPago;
+  } else {
+    limpiarFormularioIngreso();
+  }
+}
+
+function closeModal() {
+  document.getElementById("modalIngreso").style.display = "none";
+}
+
+function guardarIngreso() {
+  const fecha = document.getElementById("fecha").value;
+  const importe = document.getElementById("importe").value;
+  const cuenta = document.getElementById("cuenta").value;
+  const concepto = document.getElementById("concepto").value;
+  const origen = document.getElementById("origen").value;
+  const formaPago = document.getElementById("formaPago").value;
+
+  if (fecha && importe && cuenta && concepto && origen && formaPago) {
+    const modo = document.getElementById("modalIngreso").dataset.modo;
+    const index = document.getElementById("modalIngreso").dataset.index;
+
+    const nuevoIngreso = { fecha, importe, cuenta, concepto, origen, formaPago };
+
+    if (modo === "editar" && index !== "") {
+      const cuentaAnterior = ingresos[index].cuenta;
+      ingresos[index] = nuevoIngreso;
+      actualizarTablasPorCuentaIngreso(cuentaAnterior);
+    } else {
+      ingresos.push(nuevoIngreso);
+    }
+
+    renderizarTablaIngresos();
+    actualizarTablasPorCuentaIngreso(cuenta);
+    closeModal(); // 👈 Se cierra automáticamente
+    limpiarFormularioIngreso();
+  } else {
+    alert("Por favor, completa todos los campos.");
+  }
+}
+
+function limpiarFormularioIngreso() {
+  document.getElementById("fecha").value = '';
+  document.getElementById("importe").value = '';
+  document.getElementById("cuenta").value = '';
+  document.getElementById("concepto").value = '';
+  document.getElementById("origen").value = '';
+  document.getElementById("formaPago").value = '';
+}
+
+function renderizarTablaIngresos() {
+  const tabla = document.getElementById("tablaIngresos");
+  tabla.innerHTML = "";
+
+  ingresos.forEach((ingreso, index) => {
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${ingreso.fecha}</td>
+      <td>$${parseFloat(ingreso.importe).toFixed(2)}</td>
+      <td>${ingreso.cuenta}</td>
+      <td>${ingreso.concepto}</td>
+      <td>${ingreso.origen}</td>
+      <td>${ingreso.formaPago}</td>
+      <td>
+        <button onclick="editarIngreso(${index})">
+          <img src="https://img.icons8.com/ios/24/000000/edit.png" alt="Editar" />
+        </button>
+        <button onclick="eliminarIngreso(${index})">
+          <img src="https://img.icons8.com/ios/24/000000/trash.png" alt="Eliminar" />
+        </button>
+      </td>
+    `;
+    tabla.appendChild(fila);
+  });
+}
+
+function editarIngreso(index) {
+  openModal("editar", index);
+}
+
+function eliminarIngreso(index) {
+  const cuenta = ingresos[index].cuenta;
+  ingresos.splice(index, 1);
+  renderizarTablaIngresos();
+  actualizarTablasPorCuentaIngreso(cuenta);
+}
+
+// Egresos
+
+function openModalEgreso(modo = "agregar", index = null) {
+  document.getElementById("modalEgreso").style.display = "flex";
+  document.getElementById("modalEgreso").dataset.modo = modo;
+  document.getElementById("modalEgreso").dataset.index = index;
+
+  if (modo === "editar" && index !== null) {
+    const egreso = egresos[index];
+    document.getElementById("fechaE").value = egreso.fecha;
+    document.getElementById("importeE").value = egreso.importe;
+    document.getElementById("cuentaE").value = egreso.cuenta;
+    document.getElementById("conceptoE").value = egreso.concepto;
+    document.getElementById("destinoE").value = egreso.destino;
+    document.getElementById("formaPagoE").value = egreso.formaPago;
+  } else {
+    limpiarFormularioEgreso();
+  }
+}
+
+function closeModalEgreso() {
+  document.getElementById("modalEgreso").style.display = "none";
+}
+
+function guardarEgreso() {
+  const fecha = document.getElementById("fechaE").value;
+  const importe = document.getElementById("importeE").value;
+  const cuenta = document.getElementById("cuentaE").value;
+  const concepto = document.getElementById("conceptoE").value;
+  const destino = document.getElementById("destinoE").value;
+  const formaPago = document.getElementById("formaPagoE").value;
+
+  if (fecha && importe && cuenta && concepto && destino && formaPago) {
+    const modo = document.getElementById("modalEgreso").dataset.modo;
+    const index = document.getElementById("modalEgreso").dataset.index;
+
+    const nuevoEgreso = { fecha, importe, cuenta, concepto, destino, formaPago };
+
+    if (modo === "editar" && index !== "") {
+      const cuentaAnterior = egresos[index].cuenta;
+      egresos[index] = nuevoEgreso;
+      actualizarTablasPorCuentaEgreso(cuentaAnterior);
+    } else {
+      egresos.push(nuevoEgreso);
+    }
+
+    renderizarTablaEgresos();
+    actualizarTablasPorCuentaEgreso(cuenta);
+    closeModalEgreso(); // 👈 Se cierra automáticamente
+    limpiarFormularioEgreso();
+  } else {
+    alert("Por favor, completa todos los campos.");
+  }
+}
+
+function limpiarFormularioEgreso() {
+  document.getElementById("fechaE").value = "";
+  document.getElementById("importeE").value = "";
+  document.getElementById("cuentaE").value = "";
+  document.getElementById("conceptoE").value = "";
+  document.getElementById("destinoE").value = "";
+  document.getElementById("formaPagoE").value = "";
+}
+
+function eliminarEgreso(index) {
+  const cuenta = egresos[index].cuenta;
+  if (confirm("¿Estás seguro de que deseas eliminar este egreso?")) {
+    egresos.splice(index, 1);
+    renderizarTablaEgresos();
+    actualizarTablasPorCuentaEgreso(cuenta);
+  }
+}
+
+function renderizarTablaEgresos() {
+  const tabla = document.getElementById("tablaEgresos");
+  tabla.innerHTML = "";
+
+  egresos.forEach((egreso, index) => {
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${egreso.fecha}</td>
+      <td>$${parseFloat(egreso.importe).toFixed(2)}</td>
+      <td>${egreso.cuenta}</td>
+      <td>${egreso.concepto}</td>
+      <td>${egreso.destino}</td>
+      <td>${egreso.formaPago}</td>
+      <td>
+        <button onclick="editarEgreso(${index})">
+          <img src="https://img.icons8.com/ios/24/000000/edit.png" alt="Editar" />
+        </button>
+        <button onclick="eliminarEgreso(${index})">
+          <img src="https://img.icons8.com/ios/24/000000/trash.png" alt="Eliminar" />
+        </button>
+      </td>
+    `;
+    tabla.appendChild(fila);
+  });
+}
+
+function editarEgreso(index) {
+  openModalEgreso("editar", index);
+}
+
+function toggleTabla(id) {
+  var tabla = document.getElementById(id);
+  if (tabla.style.display === "none") {
+    tabla.style.display = "block";
+  } else {
+    tabla.style.display = "none";
+  }
+}
+
+// --- FUNCIONES PARA ACTUALIZAR TABLAS DEPENDIENDO DE LA CUENTA ---
+
+function actualizarTablasPorCuentaIngreso(cuenta) {
+  let tablaId = "";
+  switch (cuenta) {
+    case "Pyme": tablaId = "tablaIngresosPyme"; break;
+    case "Libreton": tablaId = "tablaIngresosLibreton"; break;
+    case "Caja chica": tablaId = "tablaIngresosCajaChica"; break;
+    case "Caja grande": tablaId = "tablaIngresosCajaGrande"; break;
+    default: return;
+  }
+
+  const tabla = document.getElementById(tablaId);
+  tabla.innerHTML = "";
+
+  ingresos.filter(i => i.cuenta === cuenta).forEach(i => {
+    const fila = tabla.insertRow();
+    fila.innerHTML = `
+      <td>${i.fecha}</td>
+      <td>$${parseFloat(i.importe).toFixed(2)}</td>
+      <td>${i.concepto}</td>
+      <td>${i.origen}</td>
+      <td>${i.formaPago}</td>
+    `;
+  });
+}
+
+function actualizarTablasPorCuentaEgreso(cuenta) {
+  let tablaId = "";
+  switch (cuenta) {
+    case "Pyme": tablaId = "tablaEgresosPyme"; break;
+    case "Libreton": tablaId = "tablaEgresosLibreton"; break;
+    case "Caja chica": tablaId = "tablaEgresosCajaChica"; break;
+    case "Caja grande": tablaId = "tablaEgresosCajaGrande"; break;
+    default: return;
+  }
+
+  const tabla = document.getElementById(tablaId);
+  tabla.innerHTML = "";
+
+  egresos.filter(e => e.cuenta === cuenta).forEach(e => {
+    const fila = tabla.insertRow();
+    fila.innerHTML = `
+      <td>${e.fecha}</td>
+      <td>$${parseFloat(e.importe).toFixed(2)}</td>
+      <td>${e.concepto}</td>
+      <td>${e.destino}</td>
+      <td>${e.formaPago}</td>
+    `;
+  });
+}
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
